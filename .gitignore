@@ -1,3 +1,9 @@
+# docker volumes
+postgress-storage
+
+# prisma
+prisma/migrations
+
 # Logs
 logs
 *.log
