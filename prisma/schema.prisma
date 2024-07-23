@@ -4,10 +4,14 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-model User {
+model Sensor {
   id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  sensor_name String  @unique
+  glb_file_name String?
+  location String
+  threshold Float
+
+  mqttTopic String
 }
 
 generator client {

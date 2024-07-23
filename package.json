@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon ./app.js",
-    "pg": "node ./prisma/utils/index.js"
+    "pg": "node ./prisma/utils/index.js",
+    "scaffold": "npx prisma db push && node ./prisma/utils/index.js",
+    "build": "npx prisma generate",
+    "start": "pm2 start ./app.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +24,13 @@
     "prisma": "^5.16.2"
   },
   "dependencies": {
+    "@influxdata/influxdb-client": "^1.33.2",
     "@prisma/client": "^5.16.2",
-    "express": "^4.19.2"
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "swagger-ui-express": "^5.0.1"
   }
 }
