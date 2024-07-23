@@ -13,6 +13,7 @@ RUN npm install
 RUN npm install pm2 -g
 COPY ./prisma ./prisma
 RUN npm run build
+RUN npm run scaffold
 RUN chown -R node /usr/src/app
 
 EXPOSE 3001
