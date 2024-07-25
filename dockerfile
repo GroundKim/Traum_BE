@@ -17,8 +17,7 @@ RUN chown -R node /usr/src/app
 
 EXPOSE 3001
 EXPOSE 8282
-USER node
 
 COPY . .
 
-CMD ["pm2-runtime", "start", "app.js" ] 
+CMD pm2-runtime start app.js > ./log/log.txt 2> ./log/error.txt 

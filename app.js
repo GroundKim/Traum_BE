@@ -71,7 +71,9 @@ app.get('/influx/sensor/topic/list', async (req, res) => {
 })
 
 app.get('/influx/sensor/topic/field/:sensorId', async (req, res) => {
-  const query = 'import "regexp"\n\n  from(bucket: "test_bucket")\n  |> range(start: -24h, stop: now())\n  |> filter(fn: (r) => (r["_measurement"] == "sensor_data") and (r["sensor_id"] == "edge/sensor/soundLevel-1"))\n  |> keep(columns: ["_field"])\n  |> group()\n  |> distinct(column: "_field")\n  |> limit(n: 1000)\n  |> sort()'
+  const sensorId = req.params.sensorId
+
+  const query = `import "regexp"\n\n  from(bucket: "test_bucket")\n  |> range(start: -24h, stop: now())\n  |> filter(fn: (r) => (r["_measurement"] == "sensor_data") and (r["sensor_id"] == "edge/sensor/${sensorId}"))\n  |> keep(columns: ["_field"])\n  |> group()\n  |> distinct(column: "_field")\n  |> limit(n: 1000)\n  |> sort()`
   const result = (await queryApi.collectRows(query)).map((r) => {
     return r._value
   })
